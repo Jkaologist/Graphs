@@ -5,10 +5,20 @@
  // !3 = 3 * 2 * 1 * 1
  // n * factorial(n-1)
 
- // recursion solution
+//  // recursion solution
+// const factorial = (n) => {
+//   if (n <= 1) return 1
+//   return n * factorial(n-1)
+// }
+
+// tabulated solution
 const factorial = (n) => {
-  if (n <= 1) return 1
-  return n * factorial(n-1)
+  const table = Array(n + 1).fill(1)
+  table[0] = 1
+  for (let i = 1; i <= n; i++) {
+    table[i] = table[i - 1] * i
+  }
+  return table[n]
 }
 
 console.log(factorial(0))
