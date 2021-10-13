@@ -29,4 +29,4 @@ const graph = {
   4: [3,2],
 }
 
-console.log(connectedComponentsCount(graph)) // 3
+console.log(connectedComponentsCount(graph)) // 2
