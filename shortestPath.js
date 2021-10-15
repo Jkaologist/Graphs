@@ -1,18 +1,21 @@
 const shortestPath = (edges, nodeA, nodeB) => {
   const graph = makeGraph(edges)
-  const visited = new Set([ nodeA ])
-  const queue = [ [nodeA, 0] ]
+  const visited = new Set([nodeA])
+  const queue = [[nodeA, 0]]
 
   while (queue.length > 0) {
-    const [node, distance] = queue.shift()
-    if (node === nodeB) return distance
+    const [node, dist] = queue.shift()
+    if (node === nodeB) {
+      return dist
+    }
     for (let neighbor of graph[node]) {
-      if (!visited.has(neighbor)) {
+      if (!(visited.has(neighbor))) {
         visited.add(neighbor)
-        queue.push([neighbor, distance + 1])
+        queue.push([neighbor, dist + 1])
       }
     }
   }
+
   return -1
 }
 
@@ -27,7 +30,7 @@ const edges = [
 const makeGraph = (edges) => {
   const graph = {}
   for (let edge of edges) {
-    const [a, b] = edge
+    const [ a, b ] = edge
     if (!(a in graph)) graph[a] = []
     if (!(b in graph)) graph[b] = []
     graph[a].push(b)
@@ -36,5 +39,6 @@ const makeGraph = (edges) => {
   return graph
 }
 
+console.log(shortestPath(edges, 'w', 'x')) // 1
 console.log(shortestPath(edges, 'w', 'z')) // 2
 console.log(shortestPath(edges, 'w', 'xyz')) // -1
